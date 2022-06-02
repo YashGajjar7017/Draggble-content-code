@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and drop</title>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+     
+        function dragStart(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+     
+        function dragDrop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+        </script>
+        <style>
+        #box {
+            margin: auto;
+            width: 50%;
+            height: 200px;
+            border: 3px solid green;
+            padding: 10px;
+        }
+         
+        #box1,
+        #box2,
+        #box3 {
+            float: left;
+            margin: 5px;
+            padding: 10px;
+        }
+         
+        #box1 {
+            width: 50px;
+            height: 50px;
+            background-color: #F5B5C5;
+        }
+         
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: #B5D5F5;
+        }
+         
+        #box3 {
+            width: 150px;
+            height: 150px;
+            background-color: #BEA7CC;
+        }
+         
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+         
+        .gfg {
+            font-size: 40px;
+            color: #009900;
+            font-weight: bold;
+            text-align: center;
+        }
+        </style>
+</head>
+<body>
+    <!-- The Data Transfer Object: The data transfer property is used when the whole process of Drag and Drop happens. It is used to hold the dragged data from the source and drop it to the desired location. These are the properties associated with it:
+
+dataTransfer.setData(format, data):     It is used to set the data to be dragged.
+dataTransfer.clearData(format):         It is used for calling this function with no argument that clears all the data. Calling it with a format argument removes only that specific data.
+dataTransfer.getData(format):           It returns the data of the specified format. If there is no such data, returns the empty string.
+dataTransfer.types:                     This property returns an array of all the formats that were set in the dragstart event.
+dataTransfer.files:                     It is used to return all the files that are to be dropped.
+dataTransfer.setDragImage(element, x, y): It is used to display an existing image as the drag image instead of the default image alongside the cursor. The coordinates specify the drop location.
+dataTransfer.addElement(element):       It is used to add the specified element to be drawn as a drag feedback image.
+dataTransfer.effectAllowed(value):      It will tell the browser that only the listed type(s) of operations are allowed for the user. The property can be set to the following values: none, copy, copyLink, copyMove, link, linkMove, move, all, and uninitialized.
+dataTransfer.dropEffect(value):         It is used to control the feedback that the user is given during the dragenter and dragover events. When the user hovers over a target element, the browser’s cursor will indicate what type of operation is going to take place (e.g. a copy, a move, etc.). The effect can take on one of the following values: none, copy, link, move. -->
+
+<div class="gfg">GeeksforGeeks</div>
+     
+<p>Drag and drop of boxes</p>
+ 
+ 
+    <div id="box">
+        <div id="box1" draggable="true"
+             ondragstart="dragStart(event)">
+        </div>
+        <div id="box2" draggable="true"
+             ondragstart="dragStart(event)">
+        </div>
+        <div id="box3" ondrop="dragDrop(event)"
+             ondragover="allowDrop(event)">
+        </div>
+    </div>
+
+    <!-- Explanation:
+
+Start the drag by setting the draggable property of the element to be dragged to true.
+Get the dragged data with the dataTransfer.getData() method. This method will return any data that was set to the same type in the setData() method.
+Call event.preventDefault() method to allow the dropping of elements in other elements by preventing the default handling of the element.
+The element is stored in the variable data which we append into the drop element. -->
+</body>
+</html>

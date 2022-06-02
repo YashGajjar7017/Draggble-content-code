@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and drop</title>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function dragStart(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function dragDrop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+    <style>
+        .div1 {
+            width: 240px;
+            height: 75px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: #F5F5F5;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .gfg {
+            font-size: 40px;
+            color: #009900;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gfg">GeeksforGeeks</div>
+
+    <p>Image Drag and Drop in boxes</p>
+
+
+    <div class="div1" ondrop="dragDrop(event)" ondragover="allowDrop(event)">
+        <img id="drag1" src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Geek_logi_-low_res.png"
+            draggable="true" ondragstart="dragStart(event)" width="220" height="70">
+    </div>
+    <br>
+    <div class="div1" ondrop="dragDrop(event)" ondragover="allowDrop(event)">
+    </div>
+</body>
+
+</html>

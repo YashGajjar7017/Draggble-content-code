@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and drop</title>
+    <style>
+        #getData {
+            width: 250px;
+            height: 250px;
+            padding: 10px;
+            border: 1px solid #4f4d4d;
+        }
+    </style>
+
+    <script>
+        function allowDrop(even) {
+            even.preventDefault();
+        }
+
+        function drag(even) {
+            even.dataTransfer.setData("text", even.target.id);
+        }
+
+        function drop(even) {
+            even.preventDefault();
+            var fetchData = even.dataTransfer.getData("text");
+            even.target.appendChild(document.getElementById(fetchData));
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Drag and Drop Events: There are various Drag and Drop events, some of them are listed below:
+
+ondrag:         It is used to use when the element or text selection is being dragged in HTML.
+ondragstart:    It is used to call a function, drag(event), that specifies what data to be dragged.
+ondragenter:    It is used to determine whether or not the drop target is to accept the drop. If the drop is to be accepted, then this event has to be canceled.
+ondragleave:    It occurs when the mouse leaves an element before a valid drop target while the drag is occurring.
+ondragover:     It specifies where the dragged data can be dropped.
+ondrop:         It specifies where the drop has occurred at the end of the drag operation.
+ondragend:      It occurs when the user has finished dragging an element. -->
+
+
+    <h3>Drag the clock to start your time :</h3>
+    <div id="getData" ondrop="drop(event)" ondragover="allowDrop(event)"></div><br>
+    <img id="dragData" src="main.jpg" draggable="true" ondragstart="drag(event)" width="250" height="250">
+</body>
+
+</html>
